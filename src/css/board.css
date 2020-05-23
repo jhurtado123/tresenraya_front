@@ -1,0 +1,17 @@
+
+.game-board {
+    width: 90vw;
+    height: 90vw;
+    display: flex;
+    flex-flow: column;
+    max-width: 500px;
+    max-height: 500px;
+}
+
+.game-board .row {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    height: 33.333%;
+}

@@ -1,0 +1,12 @@
+const STATUS = {
+  WAITING: 'WAITING',
+  YOUR_TURN: 'YOUR_TURN',
+  SERVER_TURN: 'SERVER_TURN',
+  WIN: 'WIN',
+  LOOSE: 'LOOSE',
+  ERROR: 'ERROR',
+  BOARD_CHECKED: 'BOARD_CHECKED',
+  TIE: 'TIE',
+};
+
+export default STATUS;

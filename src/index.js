@@ -3,11 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import GameStatusProvider from "./context/GameStatus";
+import BoardProvider from "./context/Board";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <BoardProvider>
+    <GameStatusProvider>
+      <App/>
+    </GameStatusProvider>
+  </BoardProvider>,
   document.getElementById('root')
 );
 
