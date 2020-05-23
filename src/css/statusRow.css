@@ -1,0 +1,8 @@
+.status-row {
+    position: absolute;
+    bottom:50px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+}

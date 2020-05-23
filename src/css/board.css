@@ -1,8 +1,11 @@
+
 .game-board {
-    width: 25vw;
-    height: 25vw;
+    width: 90vw;
+    height: 90vw;
     display: flex;
     flex-flow: column;
+    max-width: 500px;
+    max-height: 500px;
 }
 
 .game-board .row {

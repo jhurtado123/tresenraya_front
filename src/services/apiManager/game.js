@@ -9,7 +9,11 @@ class GameApiClient {
   }
 
   computerMove(board) {
-    return this.apiClient.get('/computerMove', {params: {board}});
+    return this.apiClient.post('/computerMove', {board});
+  }
+
+  checkBoardStatus(board) {
+    return this.apiClient.post('/checkBoardStatus', {board});
   }
 
 

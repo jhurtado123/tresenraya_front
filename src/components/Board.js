@@ -3,55 +3,67 @@ import Cell from "./Cell";
 import '../css/board.css';
 import STATUS from "../status";
 import gameApiClient from "../services/apiManager/game";
+import {withStatusContext} from "../context/GameStatus";
+import {withBoardContext} from "../context/Board";
 
 class Board extends Component {
 
-  state = {
-    positions: [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined],
-  };
-
   handleCellClick = (position) => {
-    const {positions} = this.state;
-    const {changeStatus} = this.props;
-    positions[position] = !position[position] && 'x';
+    const {board, updateBoard} = this.props;
 
-    this.setState({
-      positions,
-    }, async () => {
-      changeStatus(STATUS.SERVER_TURN);
-      try {
-        const {reponse: {board}} = await gameApiClient.computerMove();
-        this.setState({
-          positions: board,
-        })
-      } catch (e) {
-        changeStatus(STATUS.ERROR);
-      }
-    });
+    if (board[position]) return;
+
+    board[position] = 'x';
+
+    updateBoard(board);
+    this.checkBoardStatus();
   };
+
+  checkBoardStatus = async () => {
+    const {changeStatus, handleNextTurn, board} = this.props;
+
+    changeStatus(STATUS.WAITING);
+    try {
+      const {data: {status}} = await gameApiClient.checkBoardStatus(board);
+      if (status === STATUS.BOARD_CHECKED) {
+        handleNextTurn(board, this.handleComputerMove);
+      } else {
+        changeStatus(status);
+      }
+    } catch (e) {
+      changeStatus(STATUS.ERROR);
+    }
+  };
+
+  handleComputerMove = (positions) => {
+      const {updateBoard} = this.props;
+      updateBoard(positions);
+      this.checkBoardStatus();
+  };
+
 
   render() {
-    const {positions} = this.state;
+    const {board} = this.props;
     return (
       <div className={'game-board'}>
         <div className={'row'}>
-          <Cell position={0} value={positions[0]} handleClick={this.handleCellClick}/>
-          <Cell position={1} value={positions[1]} handleClick={this.handleCellClick}/>
-          <Cell position={2} value={positions[2]} handleClick={this.handleCellClick}/>
+          <Cell position={0} value={board[0]} handleClick={this.handleCellClick}/>
+          <Cell position={1} value={board[1]} handleClick={this.handleCellClick}/>
+          <Cell position={2} value={board[2]} handleClick={this.handleCellClick}/>
         </div>
         <div className={'row'}>
-          <Cell position={3} value={positions[3]} handleClick={this.handleCellClick}/>
-          <Cell position={4} value={positions[4]} handleClick={this.handleCellClick}/>
-          <Cell position={5} value={positions[5]} handleClick={this.handleCellClick}/>
+          <Cell position={3} value={board[3]} handleClick={this.handleCellClick}/>
+          <Cell position={4} value={board[4]} handleClick={this.handleCellClick}/>
+          <Cell position={5} value={board[5]} handleClick={this.handleCellClick}/>
         </div>
         <div className={'row'}>
-          <Cell position={6} value={positions[6]} handleClick={this.handleCellClick}/>
-          <Cell position={7} value={positions[7]} handleClick={this.handleCellClick}/>
-          <Cell position={8} value={positions[8]} handleClick={this.handleCellClick}/>
+          <Cell position={6} value={board[6]} handleClick={this.handleCellClick}/>
+          <Cell position={7} value={board[7]} handleClick={this.handleCellClick}/>
+          <Cell position={8} value={board[8]} handleClick={this.handleCellClick}/>
         </div>
       </div>
     );
   }
 }
 
-export default Board;
+export default withBoardContext(withStatusContext(Board));
