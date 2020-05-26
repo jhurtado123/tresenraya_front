@@ -8,7 +8,7 @@ La web funciona con React (v16.13) y con Axios
 
 - Descargar el respositorio o clonarlo con git clone en la rama master (https://github.com/jhurtado123/tresenraya_front.git)
 - Instalar las dependencias ejecutando el comando `npm install` en la raíz del proyecto.
-- Crear el archivo de variables de entorno .env con los siguientes valores\
+- Crear el archivo de variables de entorno .env con los siguientes valores:\
 
 REACT_APP_BACKEND_URI=http://localhost:3001
 
