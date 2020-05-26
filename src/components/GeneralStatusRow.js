@@ -7,7 +7,6 @@ class GeneralStatusRow extends Component {
 
   getGeneralStatus = () => {
     const {status} = this.props;
-    console.log('aa',status);
 
     if (status === STATUS.YOUR_TURN || status === STATUS.SERVER_TURN || status === STATUS.WAITING ) {
       return 'Game in progress';

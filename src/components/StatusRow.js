@@ -47,6 +47,8 @@ class StatusRow extends Component {
             <h2>Tie :/</h2>
             {this.printRestartButton()}
           </React.Fragment>);
+      default:
+        return;
     }
   };
 
