@@ -22,12 +22,12 @@ REACT_APP_BACKEND_URI=http://localhost:3001
 ### Contextos
 La aplicación funciona con dos contextos, el de estado y el de tablero.
 Cada contexto permite tener un acceso global a un estado desde cualquier componente.\
-Dichos contextos se encuentran en la carpeta /context
+Dichos contextos se encuentran en la carpeta ./context
 
 ### Api manager service
 Servicio para encapsular todas las peticiones ajax al servidor en un mismo fichero.
 Cada función devuelve una promesa sin resolver que tendrá como resultado la respuesta del servidor o un fallo.
-El api manager se encuentra en: /services/apiManager/game.js
+El api manager se encuentra en: ./services/apiManager/game.js
 
 ### Componentes
 Hay tres componentes clave.
