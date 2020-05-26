@@ -10,7 +10,6 @@ import GeneralStatusRow from "./components/GeneralStatusRow";
 class App extends Component {
 
   handleNextTurn = (board, handleComputerMove) => {
-    console.log(this.props);
     const {changeStatus} = this.props;
     if (board.filter(position => position === 'x').length === board.filter(position => position === 'c').length) {
       changeStatus(STATUS.YOUR_TURN);
