@@ -1,14 +1,12 @@
 import React, {Component} from 'react';
 import '../css/cell.css';
 import {withStatusContext} from "../context/GameStatus";
-import STATUS from "../status";
 
 class Cell extends Component {
 
   handleCellClick(position) {
-    const {handleClick, status} = this.props;
-    if (status === STATUS.YOUR_TURN)
-      handleClick(position);
+    const {handleClick} = this.props;
+    handleClick(position);
   }
 
   render() {
