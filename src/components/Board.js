@@ -9,9 +9,8 @@ import {withBoardContext} from "../context/Board";
 class Board extends Component {
 
   handleCellClick = (position) => {
-    const {board, updateBoard} = this.props;
-
-    if (board[position]) return;
+    const {board, updateBoard, status} = this.props;
+    if (board[position] || status !== STATUS.YOUR_TURN ) return;
 
     board[position] = 'x';
 
